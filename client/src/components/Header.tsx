@@ -43,24 +43,21 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/">
-          <a className="flex items-center gap-2 hover-elevate rounded-md px-3 py-2" data-testid="link-home">
-            <Leaf className="w-6 h-6 text-primary" />
-            <span className="font-bold text-xl">EcoTrack</span>
-          </a>
+        <Link href="/" className="flex items-center gap-2 hover-elevate rounded-md px-3 py-2" data-testid="link-home">
+          <Leaf className="w-6 h-6 text-primary" />
+          <span className="font-bold text-xl">EcoTrack</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href}>
-              <a data-testid={`link-${item.label.toLowerCase().replace(" ", "-")}`}>
-                <Button
-                  variant={location === item.href ? "secondary" : "ghost"}
-                  size="sm"
-                >
-                  {item.label}
-                </Button>
-              </a>
+              <Button
+                variant={location === item.href ? "secondary" : "ghost"}
+                size="sm"
+                data-testid={`link-${item.label.toLowerCase().replace(" ", "-")}`}
+              >
+                {item.label}
+              </Button>
             </Link>
           ))}
         </nav>
@@ -77,14 +74,10 @@ export default function Header() {
 
           <div className="hidden md:flex gap-2">
             <Link href="/login">
-              <a data-testid="link-login">
-                <Button variant="ghost" size="sm">Login</Button>
-              </a>
+              <Button variant="ghost" size="sm" data-testid="link-login">Login</Button>
             </Link>
             <Link href="/login">
-              <a data-testid="link-signup">
-                <Button size="sm">Sign Up</Button>
-              </a>
+              <Button size="sm" data-testid="link-signup">Sign Up</Button>
             </Link>
           </div>
 
@@ -98,26 +91,26 @@ export default function Header() {
               <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
                   <Link key={item.href} href={item.href}>
-                    <a onClick={() => setIsOpen(false)} data-testid={`mobile-link-${item.label.toLowerCase().replace(" ", "-")}`}>
-                      <Button
-                        variant={location === item.href ? "secondary" : "ghost"}
-                        className="w-full justify-start"
-                      >
-                        {item.label}
-                      </Button>
-                    </a>
+                    <Button
+                      variant={location === item.href ? "secondary" : "ghost"}
+                      className="w-full justify-start"
+                      onClick={() => setIsOpen(false)}
+                      data-testid={`mobile-link-${item.label.toLowerCase().replace(" ", "-")}`}
+                    >
+                      {item.label}
+                    </Button>
                   </Link>
                 ))}
                 <div className="border-t pt-4 flex flex-col gap-2">
                   <Link href="/login">
-                    <a onClick={() => setIsOpen(false)} data-testid="mobile-link-login">
-                      <Button variant="ghost" className="w-full">Login</Button>
-                    </a>
+                    <Button variant="ghost" className="w-full" onClick={() => setIsOpen(false)} data-testid="mobile-link-login">
+                      Login
+                    </Button>
                   </Link>
                   <Link href="/login">
-                    <a onClick={() => setIsOpen(false)} data-testid="mobile-link-signup">
-                      <Button className="w-full">Sign Up</Button>
-                    </a>
+                    <Button className="w-full" onClick={() => setIsOpen(false)} data-testid="mobile-link-signup">
+                      Sign Up
+                    </Button>
                   </Link>
                 </div>
               </nav>
